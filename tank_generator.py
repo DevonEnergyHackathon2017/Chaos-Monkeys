@@ -5,12 +5,8 @@ import random
 import json
 from azure.servicebus import ServiceBusService
 
-
-bopd=1062
-mcfd=12338
-bwpd=3170
-pressure=3830
-sbs = ServiceBusService(service_namespace='chaosMonkeys', shared_access_key_name='RootManageSharedAccessKey', shared_access_key_value='orP+j7K0t99yfAMMpwdiklynBCNKSCie0zu9lkGw4O8=')
+creds=json.load('/home/chaos/password.json')
+sbs = ServiceBusService(service_namespace='chaosMonkeys', shared_access_key_name='RootManageSharedAccessKey', shared_access_key_value=creds['password'])
 
 min_level=5.656
 max_level=13.563
