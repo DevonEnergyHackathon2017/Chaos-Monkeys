@@ -46,7 +46,7 @@ for i in range(20):
     row['level']=cl['level']
     json.dump(cl,open('/home/chaos/tank_stat.json','w'))
     sbs.send_event('tanklevel', json.dumps(row))
-    time.sleep(60)
+    time.sleep(1)
 
 
 json.dump({"state":False},open('armageddon.json','w'))
