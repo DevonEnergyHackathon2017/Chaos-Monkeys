@@ -31,7 +31,7 @@ for i in range(1000):
     row = {'Timestamp': (start + datetime.timedelta(milliseconds=(500*i))).isoformat()}
     for k in pi_data.keys():
         value = pi_data[k][i]['Value']
-        row[k] = value
+        row[k.replace('-', '')] = value
     time.sleep(0.5)
     sbs.send_event('fracjob', json.dumps(row))
     #print(row)
