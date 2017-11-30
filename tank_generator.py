@@ -4,9 +4,9 @@ import datetime
 import random
 import json
 from azure.servicebus import ServiceBusService
+creds=json.load(open('/home/chaos/password.json'))
+armageddon=json.load(open('/home/chaos/armageddon.json'))
 
-creds=json.load('/home/chaos/password.json')
-armageddon=json.load('/home/chaos/armageddon.json')
 if not armageddon['state']:
     sbs = ServiceBusService(service_namespace='chaosMonkeys', shared_access_key_name='RootManageSharedAccessKey', shared_access_key_value=creds['password'])
 
