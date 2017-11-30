@@ -36,6 +36,7 @@ for pid in pi_data.values():
     row = {'Timestamp': (datetime.datetime.now()).isoformat()}
     for k in pid:
         row[k] = pid[k]
+    sleep(0.05)
     sbs.send_event('fracjob', json.dumps(row))
     #print(row)
     #input()
