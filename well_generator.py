@@ -28,8 +28,9 @@ start = datetime.datetime.now()
 for i in range(1000):
     row = {'Timestamp': (start + datetime.timedelta(milliseconds=(500*i))).isoformat()}
     for k in pi_data.keys():
-        value = pi_data[k][i]
+        value = pi_data[k][i]['Value']
         row[k] = value
     sbs.send_event('fracjob', json.dumps(row))
     #print(row)
+    #input()
 
