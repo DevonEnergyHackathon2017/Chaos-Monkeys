@@ -27,7 +27,5 @@ for well in wells:
     row['mcfd']=mcfd*well['multiplier']+random.random()*1000
     row['bwpd']=bwpd*well['multiplier']+random.random()*150
     row['pressure']=pressure*well['multiplier']+random.random()*200
-#    resp = requests.post('https://elastic:CGalKMhJNAYGc8xepVgiqhfO@14e0fe1802d14dd18a660bbe94eaa495.elastic.dvn.com:9243/wellpressure/data/', json=row, verify=False)
- #   print(row, resp.text)
     row['location']=well['location']
     sbs.send_event('wellflow', json.dumps(row))
