@@ -32,8 +32,8 @@ start = datetime.datetime.now()
 #print(pi_data)
 
 #print(pi_data['fr-breaker'])
-for datetime in sorted(pi_data.keys()):
-    pid=pi_data[datetime]
+for dts in sorted(pi_data.keys()):
+    pid=pi_data[dts]
     row = {'Timestamp': (datetime.datetime.now()).isoformat()}
     for k in pid:
         row[k] = pid[k]
