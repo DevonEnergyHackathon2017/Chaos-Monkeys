@@ -37,7 +37,7 @@ for dts in sorted(pi_data.keys()):
     row = {'Timestamp': (datetime.datetime.now()).isoformat()}
     for k in pid:
         row[k] = pid[k]
-    time.sleep(0.05)
+    time.sleep(0.5)
     sbs.send_event('fracjob', json.dumps(row))
     #print(row)
     #input()
