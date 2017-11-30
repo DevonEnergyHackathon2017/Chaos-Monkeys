@@ -13,6 +13,8 @@ bwpd=3170
 pressure=3830
 creds=json.load('/home/chaos/password.json')
 
+json.dump({"state":True},open('armageddon.json','w'))
+
 sbs = ServiceBusService(service_namespace='chaosMonkeys', shared_access_key_name='RootManageSharedAccessKey', shared_access_key_value=creds['password'])
 
 wells=[{'name':'well1','location':{'lat':36.127927, 'long':-97.678902}, 'multiplier':1},
