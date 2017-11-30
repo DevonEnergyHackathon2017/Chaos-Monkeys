@@ -26,10 +26,10 @@ wells=[{'name':'well1','location':{'lat':36.127927, 'long':-97.678902}, 'multipl
        {'name':'well6okc','location':{'lat':35.490862, 'long':-97.503232}, 'multiplier':0.1}]
 
 
-for i in range(60):
+for i in range(20):
     for well in wells:
         if well['name'] == 'well3':
-            well['multiplier']+=(i/10)
+            well['multiplier']+=(i/20)
         row= {'name':well['name'], 'Timestamp':datetime.datetime.now().isoformat()}
         row['location']= "%.5f,%.5f" % (well['location']['lat'],well['location']['long'])
         row['bopd']=bopd*well['multiplier']+random.random()*50
@@ -46,7 +46,7 @@ for i in range(60):
     row['level']=cl['level']
     json.dump(cl,open('/home/chaos/tank_stat.json','w'))
     sbs.send_event('tanklevel', json.dumps(row))
-    time.sleep(1)
+    time.sleep(60)
 
 
 json.dump({"state":False},open('armageddon.json','w'))
