@@ -11,6 +11,7 @@ bopd=1062
 mcfd=12338
 bwpd=3170
 pressure=3830
+max_level = 13.5
 creds=json.load(open('/home/chaos/password.json'))
 
 json.dump({"state":True},open('armageddon.json','w'))
