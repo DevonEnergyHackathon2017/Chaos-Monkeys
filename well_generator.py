@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
 
 import requests
 import datetime
@@ -6,8 +6,9 @@ import random
 import json
 import sys
 from azure.servicebus import ServiceBusService
+creds=json.load(open('/home/chaos/password.json'))
 
-sbs = ServiceBusService(service_namespace='chaosMonkeys', shared_access_key_name='RootManageSharedAccessKey', shared_access_key_value=sys.argv[1])
+sbs = ServiceBusService(service_namespace='chaosMonkeys', shared_access_key_name='RootManageSharedAccessKey', shared_access_key_value=creds['password'])
 
 files = ['calculated-bh-sand-conc.json', 'fr-breaker.json', 'slurryrate.json', 'crosslinker.json', 'gelling-agent.json', 'pressure.json', 'surface-sand-conc.json']
 
@@ -23,7 +24,7 @@ start = datetime.datetime.now()
 for i in range(1000):
     row = {'Timestamp': (start + datetime.timedelta(milliseconds=(500*i))).isoformat()}
     for k in pi_data.keys():
-        value = random.choice(pi_data[k])
+        value = pi_data[k][i]
         row[k] = value
     sbs.send_event('fracjob', json.dumps(row))
     #print(row)
