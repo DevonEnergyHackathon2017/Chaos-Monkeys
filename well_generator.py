@@ -21,19 +21,22 @@ max=0
 for datafile in files:
     fn = os.path.join(os.path.dirname(__file__), 'well-values/' + datafile)
     items = json.load(open(fn))
-    pi_data[datafile.split('.')[0]] = items['Items']
+    for item in items['Items']:
+        dt = item['Timestamp'].split('.')[0]
+        if not dt in pi_data:
+            pi_data[dt]={}
+        pi_data[dt][datafile.split('.')[0]]=item['Value']
+    #pi_data[datafile.split('.')[0]] = items['Items']
 
 start = datetime.datetime.now()
+#print(pi_data)
 
 #print(pi_data['fr-breaker'])
-
-for i in range(1000):
-    row = {'Timestamp': (start + datetime.timedelta(milliseconds=(500*i))).isoformat()}
-    for k in pi_data.keys():
-        value = pi_data[k][i]['Value']
-        row[k.replace('-', '')] = value
+for pid in pi_data.values():
+    row = {'Timestamp': (datetime.datetime.now()).isoformat()}
+    for k in pid:
+        row[k] = pid[k]
     time.sleep(0.5)
     sbs.send_event('fracjob', json.dumps(row))
     #print(row)
     #input()
-
