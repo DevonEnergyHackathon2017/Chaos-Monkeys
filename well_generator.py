@@ -30,6 +30,7 @@ for datafile in files:
 
 start = datetime.datetime.now()
 #print(pi_data)
+json.dump(pi_data,open('/home/chaos/pi_Data.json','w'))
 
 #print(pi_data['fr-breaker'])
 for dts in sorted(pi_data.keys()):
