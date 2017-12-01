@@ -25,7 +25,7 @@ for datafile in files:
         dt = item['Timestamp'].split('.')[0]
         if not dt in pi_data:
             pi_data[dt]={}
-        pi_data[dt][datafile.split('.')[0]]=item['Value']
+        pi_data[dt][datafile.replace('-','').split('.')[0]]=item['Value']
     #pi_data[datafile.split('.')[0]] = items['Items']
 
 start = datetime.datetime.now()
